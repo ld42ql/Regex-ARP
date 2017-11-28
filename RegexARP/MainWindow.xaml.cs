@@ -29,13 +29,19 @@ namespace RegexARP
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            regex.CreatList();
+            regex.CreatList(regex.UserList(textInform.Text));
+            regex.SortDirection();
             regex.CenericIP();
-            foreach (var item in regex.listIP)
+
+            textInform.Clear();
+            foreach (var item in regex.dictionary)
             {
-                textInform.Text += $"{item.SwitchIP[0]}.{item.SwitchIP[1]}.{item.SwitchIP[2]}.{item.SwitchIP[3]}" +
-                    $"	{item.SwitchMAC}	{item.SwitchVlan}\n";
+                textInform.Text += $"{item.Value.SwitchIP[0]}.{item.Value.SwitchIP[1]}.{item.Value.SwitchIP[2]}." +
+                    $"{item.Value.SwitchIP[3]}" +
+                    $"	{item.Value.SwitchMAC}	{item.Value.SwitchVlan}\n";
             }
+            
+
         }
     }
 }
