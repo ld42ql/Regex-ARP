@@ -5,10 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RegexARP"
         mc:Ignorable="d"
-        Title="MainWindow" Height="751.587" Width="775.794">
+        Title="MainWindow" Height="751.587" Width="817.794">
     <Grid Margin="0,0,-48,-6">
-        <TextBox x:Name="textInform" Background="#FFE4E2D0" HorizontalAlignment="Left" Height="725" TextWrapping="Wrap" VerticalAlignment="Top" Width="772" Margin="0,0,-207,-399" SpellCheck.IsEnabled="True" AcceptsReturn="True"/>
-        <Button Content="Start" HorizontalAlignment="Left" Margin="682,0,0,0" VerticalAlignment="Top" Width="90" Height="166" Click="Button_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="340*"/>
+            <ColumnDefinition Width="89*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="textInform" HorizontalAlignment="Left" Height="723" TextWrapping="Wrap" VerticalAlignment="Top" Width="677" SpellCheck.IsEnabled="True" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Background="#FFF9F9F0" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.144"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Button x:Name="btbStart" Content="Start" Margin="0,-3,50,10" Click="Button_Click" Grid.Column="1"/>
 
     </Grid>
 </Window>

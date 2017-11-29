@@ -20,7 +20,7 @@ namespace RegexARP
     /// </summary>
     public partial class MainWindow : Window
     {
-        RegexSwitchInform regex = new RegexSwitchInform();
+
 
         public MainWindow()
         {
@@ -29,19 +29,29 @@ namespace RegexARP
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            regex.CreatList(regex.UserList(textInform.Text));
-            regex.SortDirection();
-            regex.CenericIP();
-
-            textInform.Clear();
-            foreach (var item in regex.dictionary)
+            if (Convert.ToString(btbStart.Content) == "Start")
             {
-                textInform.Text += $"{item.Value.SwitchIP[0]}.{item.Value.SwitchIP[1]}.{item.Value.SwitchIP[2]}." +
-                    $"{item.Value.SwitchIP[3]}" +
-                    $"	{item.Value.SwitchMAC}	{item.Value.SwitchVlan}\n";
-            }
-            
+                RegexSwitchInform regex = new RegexSwitchInform();
 
+                regex.CreatList(regex.UserList(textInform.Text));
+                regex.SortDirection();
+                regex.CenericIP();
+
+                textInform.Clear();
+                foreach (var item in regex.dictionary)
+                {
+                    textInform.Text += $"{item.Value.SwitchIP[0]}.{item.Value.SwitchIP[1]}.{item.Value.SwitchIP[2]}." +
+                        $"{item.Value.SwitchIP[3]}" +
+                        $"	{item.Value.SwitchMAC}	{item.Value.SwitchVlan}\n";
+                }
+
+                btbStart.Content = "Reset";
+            }
+            else
+            {
+                textInform.Clear();
+                btbStart.Content = "Start";
+            }
         }
     }
 }
