@@ -20,7 +20,7 @@ namespace RegexARP
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        RegexSwitchInform regex;
 
         public MainWindow()
         {
@@ -29,22 +29,14 @@ namespace RegexARP
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            
+
             if (Convert.ToString(btbStart.Content) == "Start")
             {
-                RegexSwitchInform regex = new RegexSwitchInform();
-
-                regex.CreatList(regex.UserList(textInform.Text));
-                regex.SortDirection();
-                regex.CenericIP();
-
+                regex = new RegexSwitchInform(textInform.Text);
+                regex.CreatList();
                 textInform.Clear();
-                foreach (var item in regex.dictionary)
-                {
-                    textInform.Text += $"{item.Value.SwitchIP[0]}.{item.Value.SwitchIP[1]}.{item.Value.SwitchIP[2]}." +
-                        $"{item.Value.SwitchIP[3]}" +
-                        $"	{item.Value.SwitchMAC}	{item.Value.SwitchVlan}\n";
-                }
-
+                ViewResult();
                 btbStart.Content = "Reset";
             }
             else
@@ -52,6 +44,45 @@ namespace RegexARP
                 textInform.Clear();
                 btbStart.Content = "Start";
             }
+        }
+
+        private void ViewResult()
+        {
+           
+            foreach (var item in chekIpAll.IsChecked == true ? regex.ResultDictionary() :
+                regex.FreeIP())
+            {
+                textInform.Text += $"{item.Value.SwitchListIP[0]}.{item.Value.SwitchListIP[1]}." +
+                    $"{item.Value.SwitchListIP[2]}." +
+                    $"{item.Value.SwitchListIP[3]}" +
+                    $"	{item.Value.SwitchMAC}	{item.Value.SwitchVlan}\n";
+            }
+        }
+
+        private void chekIpAll_Checked(object sender, RoutedEventArgs e)
+        {
+            //if (chekIpAll.IsEnabled)
+            //{
+            //    textInform.Clear();
+            //    foreach (var item in regex.ResultDictionary())
+            //    {
+            //        textInform.Text += $"{item.Value.SwitchListIP[0]}.{item.Value.SwitchListIP[1]}." +
+            //            $"{item.Value.SwitchListIP[2]}." +
+            //            $"{item.Value.SwitchListIP[3]}" +
+            //            $"	{item.Value.SwitchMAC}	{item.Value.SwitchVlan}\n";
+            //    }
+            //}
+            //else
+            //{
+            //    textInform.Clear();
+            //    foreach (var item in regex.FreeIP())
+            //    {
+            //        textInform.Text += $"{item.Value.SwitchListIP[0]}.{item.Value.SwitchListIP[1]}." +
+            //            $"{item.Value.SwitchListIP[2]}." +
+            //            $"{item.Value.SwitchListIP[3]}" +
+            //            $"	{item.Value.SwitchMAC}	{item.Value.SwitchVlan}\n";
+            //    }
+            //}
         }
     }
 }

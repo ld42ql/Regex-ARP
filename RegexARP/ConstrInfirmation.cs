@@ -9,18 +9,35 @@ namespace RegexARP
     /// <summary>
     /// Класс для хранения данных о коммутаторах
     /// </summary>
-    class ConstrInfirmation
+    class ConstrInformation
     {
         private string switchIP;
-        public string SwitchMAC, SwitchVlan;
+        private string switchMAC;
+        private string switchVlan;
 
-        public List<byte> SwitchIP { get => ListIP(); }
+        /// <summary>
+        /// IP в виде массива
+        /// </summary>
+        public List<byte> SwitchListIP { get => ListIP(); }
 
-        public ConstrInfirmation(string SwitchIP, string SwitchMAC, string SwitchVlan)
+        /// <summary>
+        /// IP в виде строки
+        /// </summary>
+        public string SwitchStringIP { get => TryIp(); }
+
+        public string SwitchMAC { get => switchMAC; }
+        public string SwitchVlan { get => switchVlan; }
+
+        public ConstrInformation(string SwitchIP)
         {
             this.switchIP = SwitchIP;
-            this.SwitchMAC = SwitchMAC;
-            this.SwitchVlan = SwitchVlan;
+        }
+
+        public ConstrInformation(string SwitchIP, string SwitchMAC, string SwitchVlan)
+        {
+            this.switchIP = SwitchIP;
+            this.switchMAC = SwitchMAC;
+            this.switchVlan = SwitchVlan;
         }
 
         /// <summary>
@@ -36,6 +53,37 @@ namespace RegexARP
                 listiP.Add(Convert.ToByte(array[i]));
             }
             return listiP;
+        }
+
+        /// <summary>
+        /// Пересобираем IP в вид: 00х.00х.00х.00х
+        /// </summary>
+        /// <returns></returns>
+        string TryIp()
+        {
+            string IP = String.Empty;
+            foreach (var item in ListIP())
+            {
+                IP += Modification(item) + ".";
+            }
+            return IP;
+        }
+
+        /// <summary>
+        /// Записываем число в трехзначном виде
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public string Modification(int value)
+        {
+            if (value >= 100)
+            {
+                return $"{value}";
+            }
+            else
+            {
+                return value >= 10 ? $"0{value}" : $"00{value}";
+            }
         }
     }
 }

@@ -1,27 +1,46 @@
-﻿<Window x:Name="txtId" x:Class="RegexARP.MainWindow"
+﻿<Window x:Class="RegexARP.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RegexARP"
         mc:Ignorable="d"
-        Title="MainWindow" Height="751.587" Width="817.794">
+        Title="MainWindow" Height="532" Width="800" MinWidth="120" MinHeight="350" Padding="10,20,20,5">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black"/>
+            <GradientStop Color="#FF0E90DA" Offset="0.363"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid Margin="0,0,-48,-6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="51*"/>
+            <RowDefinition Height="313*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="340*"/>
-            <ColumnDefinition Width="89*"/>
+            <ColumnDefinition Width="762"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="textInform" HorizontalAlignment="Left" Height="723" TextWrapping="Wrap" VerticalAlignment="Top" Width="677" SpellCheck.IsEnabled="True" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Background="#FFF9F9F0" RenderTransformOrigin="0.5,0.5">
+        <TextBox x:Name="textInform" HorizontalAlignment="Right" TextWrapping="Wrap" SpellCheck.IsEnabled="True" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Background="#FFF9F9F0" RenderTransformOrigin="0.5,0.5" Margin="0,8,3,8" Grid.Row="1" MinWidth="120" Width="762">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="-0.144"/>
+                    <RotateTransform Angle="0.238"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <Button x:Name="btbStart" Content="Start" Margin="0,-3,50,10" Click="Button_Click" Grid.Column="1"/>
+        <Button x:Name="btbStart" Content="Start" Margin="10,10,226,30" Click="Button_Click"/>
+        <GroupBox Header="Меню" HorizontalAlignment="Left" Height="51" Margin="541,10,0,0" VerticalAlignment="Top" Width="211" BorderBrush="{x:Null}" Foreground="#FFF0E9E9" FontWeight="Bold" FontSize="14" FontStyle="Italic">
+            <GroupBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FF2A8AAE"/>
+                </LinearGradientBrush>
+            </GroupBox.Background>
+            <CheckBox x:Name="chekIpAll" Content="Показать все IP" HorizontalAlignment="Left" Height="15" Margin="10,0,0,0" VerticalAlignment="Top" FontStyle="Normal" FontWeight="Normal" FontSize="11" Foreground="#FFCDD8DC" Click="chekIpAll_Checked"/>
+        </GroupBox>
 
     </Grid>
 </Window>
